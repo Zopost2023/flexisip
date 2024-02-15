@@ -528,12 +528,12 @@ void ModuleRouter::routeRequest(shared_ptr<RequestSipEvent>& ev, const shared_pt
 			LOGD("Sip_contact of %s is expired", url_as_string(ms->getHome(), ec->mSipContact->m_url));
 			continue;
 		}
-		if (sip->sip_request->rq_url->url_type == url_sips && ct->m_url->url_type != url_sips) {
-			/* https://tools.ietf.org/html/rfc5630 */
-			nonSipsFound = true;
-			LOGD("Not dispatching request to non-sips target.");
-			continue;
-		}
+		// if (sip->sip_request->rq_url->url_type == url_sips && ct->m_url->url_type != url_sips) {
+		// 	/* https://tools.ietf.org/html/rfc5630 */
+		// 	nonSipsFound = true;
+		// 	LOGD("Not dispatching request to non-sips target.");
+		// 	continue;
+		// }
 		if (ec->mUsedAsRoute && ModuleToolbox::viaContainsUrl(sip->sip_via, ct->m_url)) {
 			LOGD("Skip destination to %s, because the message is coming from here already.",
 			     url_as_string(ms->getHome(), ct->m_url));
